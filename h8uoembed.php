@@ -59,7 +59,7 @@ class H8UoEmbed {
 				$oembed_html = ' data-H8UoEmbed-html="'.esc_attr($this->add_autoplay($data->html)).'"';
 
 			$html = '<div class="H8UoEmbed"'.$oembed_size.'>';
-			$html .= '<a class="H8UoEmbed-link" href="'.esc_url($url).'" title="'.esc_attr($title).'"'.$oembed_html.'><img src="'.esc_url($data->thumbnail_url).'" alt="'.esc_attr($title).'"'.$img_size.'/></a>'; 
+			$html .= '<a class="H8UoEmbed-link" href="'.esc_url($url).'" title="'.esc_attr($title).'"'.$oembed_html.$oembed_size.'><img src="'.esc_url($data->thumbnail_url).'" alt="'.esc_attr($title).'"'.$img_size.'/></a>'; 
 			$html .= '</div>';
 		}
 		return $html;
@@ -136,12 +136,12 @@ class H8UoEmbed {
 			$current_video_providers_styles = implode("\n", array_intersect_key($video_providers_styles, $this->video_providers));
 ?>
 	<style type="text/css">
-		.H8UoEmbed { background:#000; }
+		.H8UoEmbed { background:#000; overflow:hidden; }
 			.H8UoEmbed iframe, .H8UoEmbed object, .H8UoEmbed video { display:block; }
 		.H8UoEmbed-link { position:relative; display:block; }
 			.H8UoEmbed-link img { display:block; margin:0; width:100%; height:auto; }
-			.H8UoEmbed-link:before { content:attr(title); position:absolute; left:0; right:0; top:0; padding:8px 15px; font:13px/1 Arial, sans-serif; color:#fff; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; background:#000; background:rgba(0,0,0,0.8); transition:all ease-in-out 0.3s; }
-			.H8UoEmbed-link:after { content:'\25BA'; position:absolute; left:50%; top:50%; margin:-35px 0 0 -35px; width:60px; height:60px; font:30px/60px Arial, sans-serif; color:#fff; text-align:center; text-indent:5px; border-radius:35px; border:5px solid #fff; transition:all ease-in-out 0.3s; }
+			.H8UoEmbed-link:before { content:attr(title); position:absolute; left:0; right:0; top:0; z-index:1; padding:8px 15px; font:13px/1 Arial, sans-serif; color:#fff; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; background:#000; background:rgba(0,0,0,0.8); transition:all ease-in-out 0.3s; }
+			.H8UoEmbed-link:after { content:'\25BA'; position:absolute; left:50%; top:50%; z-index:1; margin:-35px 0 0 -35px; width:60px; height:60px; font:30px/60px Arial, sans-serif; color:#fff; text-align:center; text-indent:5px; border-radius:35px; border:5px solid #fff; transition:all ease-in-out 0.3s; }
 		<?php echo $current_video_providers_styles; ?>
 	</style>
 <?php

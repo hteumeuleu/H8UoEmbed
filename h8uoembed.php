@@ -58,9 +58,9 @@ class H8UoEmbed {
 			if(!empty($data->html) && is_string($data->html))
 				$oembed_html = ' data-H8UoEmbed-html="'.esc_attr($this->add_autoplay($data->html)).'"';
 
-			$html = '<div class="H8UoEmbed"'.$oembed_size.'>';
+			$html = '<p class="H8UoEmbed"'.$oembed_size.'>';
 			$html .= '<a class="H8UoEmbed-link" href="'.esc_url($url).'" title="'.esc_attr($title).'"'.$oembed_html.$oembed_size.'><img src="'.esc_url($data->thumbnail_url).'" alt="'.esc_attr($title).'"'.$img_size.'/></a>'; 
-			$html .= '</div>';
+			$html .= '</p>';
 		}
 		return $html;
 	}

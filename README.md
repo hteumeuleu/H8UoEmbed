@@ -1,6 +1,6 @@
 # H8UoEmbed
 
-This WordPress plugin will override WordPress' default oEmbed behavior for videos. Even if you don't watch the video, embedding a Youtube video player adds more than 500 Ko to your page weight. Instead of embedding of full video player in an iframe, this plugin will generate a static link with an image thumbnail of the video. 
+This WordPress plugin will override WordPress' default oEmbed behavior for videos. Even if you don't watch the video, embedding a Youtube video player adds more than 500 Ko to your page weight. Instead of embedding of full video player in an iframe, this plugin will generate a static link with an image thumbnail of the video. You can see [a demo of the plugin](http://www.hteumeuleu.fr/H8UoEmbed/) on my blog.
 
 ## Installation
 1. [Download the latest version](https://github.com/hteumeuleu/H8UoEmbed/archive/master.zip) and unzip it in your *wp-content/plugins* folder.
@@ -30,6 +30,7 @@ Styles are also added to mimic default players look and feel.
 Script and styles are only added to the page if necessary. So if there's no video on the current page, nothing will be added.
 
 ## Status
+* V0.2 : Minor fixes.
 * v0.1 : First version. I wouldn't advise installing this straight away on your own server, as this is still a very early version. I'm looking for testers to find edge cases and give me feedbacks on my code.
 
 H8UoEmbed stands for *HTeuMeuLeu's oEmbed*. I know, *how creative !* But it was either that or *VideoKilledTheWebPerfStar*, or *EmbedWithMadonna*. So in the end, it's not that bad.

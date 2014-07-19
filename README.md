@@ -25,11 +25,11 @@ This plugin will create and embed the following code :
 </div>
 ```
 
-A script is then included on the `wp_footer` hook to replace the static link by its iframe. This script will use the `data-h8uoembed-html` attribute generated in the static HTML. 
+A script is then added with the `wp_enqueue_scripts` hook to replace the static link by its iframe. This script will use the `data-h8uoembed-html` attribute generated in the static HTML. 
 Styles are also added to mimic default players look and feel.
-Script and styles are only added to the page if necessary. So if there's no video on the current page, nothing will be added.
 
 ## Status
+* V0.3 : CSS and JS are now added on separate files.
 * V0.2 : Minor fixes.
 * v0.1 : First version. I wouldn't advise installing this straight away on your own server, as this is still a very early version. I'm looking for testers to find edge cases and give me feedbacks on my code.
 

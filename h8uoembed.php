@@ -26,8 +26,8 @@ class H8UoEmbed {
 		add_filter('embed_defaults', array(&$this, 'set_default_size_to_large'));
 		add_filter('embed_oembed_html', array(&$this, 'add_video_provider'), 1, 4);
 
-		add_action('wp_footer', array(&$this, 'add_css'));
-		add_action('wp_footer', array(&$this, 'add_script'));
+		add_action('wp_enqueue_scripts', array(&$this, 'add_css'));
+		add_action('wp_enqueue_scripts', array(&$this, 'add_script'));
 	}
 
 	/**
@@ -84,68 +84,17 @@ class H8UoEmbed {
 	}
 
 	/**
-	 * Add necessary scripts for videos on the current page, based on the list of providers generated for this page.
+	 * Add necessary scripts for videos on the current page
 	 */
 	function add_script() {
-		if($this->assets_are_needed()) {
-?>
-	<script>
-		document.addEventListener('DOMContentLoaded', H8UoEmbedInit);
-
-		function H8UoEmbedInit() {
-			var H8UoEmbedVideos = document.querySelectorAll('.H8UoEmbed-link[data-H8UoEmbed-html]');
-			for(var i=0; i < H8UoEmbedVideos.length; i++)
-			{
-				H8UoEmbedVideos[i].addEventListener('click', function(e) {
-					e.preventDefault();
-					var oEmbedHTML = this.getAttribute('data-H8UoEmbed-html');
-					this.parentNode.innerHTML = oEmbedHTML;
-				});
-			}
-		}
-	</script>
-<?php
-		}
+		wp_enqueue_script('H8UoEmbed', plugins_url('assets/h8uoembed.js', __FILE__));
 	}
 
 	/**
-	 * Add necessary styles for videos on the current page, based on the list of providers generated for this page.
-	 * If a provider is not necessary, its styles are not included.
+	 * Add necessary styles for videos on the current page
 	 */
 	function add_css() {
-		if($this->assets_are_needed()) {
-			$video_providers_styles = array(
-				'youtube.com' =>
-					'.H8UoEmbed-link[href*="youtube.com"]:before,'.
-					'.H8UoEmbed-link[href*="youtu.be"]:before { left:0; right:0; top:0; padding:8px 15px; font:13px/1 Arial, sans-serif; color:#fff; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; background:#000; background:rgba(0,0,0,0.8); }'.
-					'.H8UoEmbed-link[href*="youtube.com"]:after,'.
-					'.H8UoEmbed-link[href*="youtu.be"]:after { content:\'\25BA\'; position:absolute; left:50%; top:50%; margin:-30px 0 0 -42px; width:84px; height:60px; font:25px/60px Arial, sans-serif; color:#fff; text-align:center; text-indent:0; background:#000; background:rgba(0,0,0,0.8); border:none; border-radius:10px / 30px; }'.
-					'.H8UoEmbed-link[href*="youtube.com"]:hover:after,'.
-					'.H8UoEmbed-link[href*="youtu.be"]:hover:after { background-color:#cc181e; }',
-				'vimeo.com' =>
-					'.H8UoEmbed-link[href*="vimeo.com"]:before { padding:6px 4px; left:10px; right:auto; top:10px; max-width:calc(100% - 20px); color:#00adef; font-weight:bold; font-size:20px; background:rgba(23,35,35,0.8); }'.
-					'.H8UoEmbed-link[href*="vimeo.com"]:after { margin:-20px 0 0 -32px; width:65px; height:40px; line-height:40px; font-size:20px; border-radius:5px; border:none; text-indent:0; background:rgba(23,35,35,0.8); }'.
-					'.H8UoEmbed-link[href*="vimeo.com"]:hover:after { background-color:#00adef; }',
-				'dailymotion.com' =>
-					'.H8UoEmbed-link[href*="dailymotion.com"]:before { top:auto; bottom:0; min-height:60px; padding:4px 20px 4px 80px; font:bold 18px/1.25 Arial, sans-serif; border-top:1px solid rgba(0,0,0,0.3); background:rgba(0,0,0,0.2); }'.
-					'.H8UoEmbed-link[href*="dailymotion.com"]:after { left:4px; top:auto; bottom:4px; margin:0; width:70px; height:60px; line-height:60px; font-size:25px; border-radius:4px; border:1px solid #000; text-indent:0; background:#171d1b; }'.
-					'.H8UoEmbed-link[href*="dailymotion.com"]:hover:before { color:#ffcc33; border-top-color:#000; background:rgba(0,0,0,0.8); }'.
-					'.H8UoEmbed-link[href*="dailymotion.com"]:hover:after { color:#ffcc33; }'
-			);
-
-			$current_video_providers_styles = implode("\n", array_intersect_key($video_providers_styles, $this->video_providers));
-?>
-	<style type="text/css">
-		.H8UoEmbed { background:#000; overflow:hidden; }
-			.H8UoEmbed iframe, .H8UoEmbed object, .H8UoEmbed video { display:block; }
-		.H8UoEmbed-link { position:relative; display:block; }
-			.H8UoEmbed-link img { display:block; margin:0; width:100%; height:auto; }
-			.H8UoEmbed-link:before { content:attr(title); position:absolute; left:0; right:0; top:0; z-index:1; padding:8px 15px; font:13px/1 Arial, sans-serif; color:#fff; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; background:#000; background:rgba(0,0,0,0.8); transition:all ease-in-out 0.3s; }
-			.H8UoEmbed-link:after { content:'\25BA'; position:absolute; left:50%; top:50%; z-index:1; margin:-35px 0 0 -35px; width:60px; height:60px; font:30px/60px Arial, sans-serif; color:#fff; text-align:center; text-indent:5px; border-radius:35px; border:5px solid #fff; transition:all ease-in-out 0.3s; }
-		<?php echo $current_video_providers_styles; ?>
-	</style>
-<?php
-		}
+		wp_enqueue_style('H8UoEmbed', plugins_url('assets/h8uoembed.css', __FILE__));
 	}
 
 	/**

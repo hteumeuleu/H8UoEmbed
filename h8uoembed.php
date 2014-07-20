@@ -11,9 +11,7 @@ License URI: http://www.wtfpl.net/
 */
 
 class H8UoEmbed {
-
-	var $video_providers = array();
-
+	
 	function __construct() {
 		$this->init_hooks();
 	}
@@ -24,7 +22,6 @@ class H8UoEmbed {
 	private function init_hooks() {
 		add_filter('oembed_dataparse', array(&$this, 'override_oembed'), 1, 3);
 		add_filter('embed_defaults', array(&$this, 'set_default_size_to_large'));
-		add_filter('embed_oembed_html', array(&$this, 'add_video_provider'), 1, 4);
 
 		add_action('wp_enqueue_scripts', array(&$this, 'add_css'));
 		add_action('wp_enqueue_scripts', array(&$this, 'add_script'));
@@ -95,32 +92,6 @@ class H8UoEmbed {
 	 */
 	function add_css() {
 		wp_enqueue_style('H8UoEmbed', plugins_url('assets/h8uoembed.css', __FILE__));
-	}
-
-	/**
-	 * Add a video provider to the list of video providers seen on the current page.
-	 * This function is called on the embed_oembed_html filter.
-	 *
-	 * @see WP_Embed::shortcode()
-	 */
-	function add_video_provider($html, $url, $attr, $post_ID) {
-		if(strpos($html, 'data-H8UoEmbed-html') !== false) {
-			$url_parsed = parse_url($url);
-			if(!empty($url_parsed)) {
-				$host = $url_parsed['host'];
-				$host = str_replace('www.', '', $host);
-				if(!in_array($host, $this->video_providers))
-					$this->video_providers[$host][] = $url;
-			}
-		}
-		return $html;
-	}
-
-	/**
-	 * Check if the CSS and JS assets need to be added on the current page.
-	 */
-	private function assets_are_needed() {
-		return !empty($this->video_providers);
 	}
 
 	/**

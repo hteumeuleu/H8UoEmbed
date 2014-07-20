@@ -41,22 +41,29 @@ class H8UoEmbed {
 	{
 		if($data->type == 'video' && !empty($data->thumbnail_url) && is_string($data->thumbnail_url))
 		{
-			$img_size = '';
-			$oembed_size = '';
-			$title = '';
+			$oembed_style = '';
 			$oembed_html = '';
+			$oembed_class = '';
+			$title = '';
+			$img_size = '';
+			$img_class = '';
 
 			if(!empty($data->thumbnail_width) && !empty($data->thumbnail_height) && is_numeric($data->thumbnail_width) && is_numeric($data->thumbnail_height))
 				$img_size = ' width="'.esc_attr($data->thumbnail_width).'" height="'.esc_attr($data->thumbnail_height).'"';
-			if(!empty($data->width) && !empty($data->height) && is_numeric($data->width) && is_numeric($data->height))
-				$oembed_size = ' style="max-width:'.esc_attr($data->width).'px; max-height:'.esc_attr($data->height).'px;"';
+			if(!empty($data->width) && is_numeric($data->width))
+				$oembed_style = ' style="max-width:'.esc_attr($data->width).'px;"';
 			if(!empty($data->title) && is_string($data->title))
 				$title = $data->title;
 			if(!empty($data->html) && is_string($data->html))
 				$oembed_html = ' data-H8UoEmbed-html="'.esc_attr($this->add_autoplay($data->html)).'"';
+			if($this->is_ratio($data->width, $data->height, 16/9) && $this->is_ratio($data->thumbnail_width, $data->thumbnail_height, 4/3))
+			{
+				$oembed_class = ' H8UoEmbed--ratio-16-9';
+				$img_class = ' H8UoEmbed-img--ratio-4-3';
+			}
 
-			$html = '<p class="H8UoEmbed"'.$oembed_size.'>';
-			$html .= '<a class="H8UoEmbed-link" href="'.esc_url($url).'" title="'.esc_attr($title).'"'.$oembed_html.$oembed_size.'><img src="'.esc_url($data->thumbnail_url).'" alt="'.esc_attr($title).'"'.$img_size.'/></a>'; 
+			$html = '<p class="H8UoEmbed'.$oembed_class.'"'.$oembed_style.'>';
+			$html .= '<a class="H8UoEmbed-link" href="'.esc_url($url).'" title="'.esc_attr($title).'"'.$oembed_html.'><img src="'.esc_url($data->thumbnail_url).'" alt="'.esc_attr($title).'" class="H8UoEmbed-img'.$img_class.'"'.$img_size.'/></a>'; 
 			$html .= '</p>';
 		}
 		return $html;
@@ -81,14 +88,14 @@ class H8UoEmbed {
 	}
 
 	/**
-	 * Add necessary scripts for videos on the current page
+	 * Add necessary scripts for videos on the current page.
 	 */
 	function add_script() {
 		wp_enqueue_script('H8UoEmbed', plugins_url('assets/h8uoembed.js', __FILE__));
 	}
 
 	/**
-	 * Add necessary styles for videos on the current page
+	 * Add necessary styles for videos on the current page.
 	 */
 	function add_css() {
 		wp_enqueue_style('H8UoEmbed', plugins_url('assets/h8uoembed.css', __FILE__));
@@ -104,6 +111,22 @@ class H8UoEmbed {
 		$regex = '/^(<iframe.*? src=")(.*?)((\?)(.*?))?(".*)$/';
 		$data = preg_replace($regex, '$1$2?$5&autoplay=1$6', $data);
 		return $data;
+	}
+
+	/**
+	 * Check if the width and height is a specific ratio aspect.
+	 *
+	 * @param int $width
+	 * @param int $height
+	 * @param int $ratio
+	 */
+	private function is_ratio($width, $height, $ratio) {
+		if(is_numeric($width) && is_numeric($height) && is_numeric($ratio)) {
+			$actual_ratio = round($width / $height, 2);
+			$desired_ratio = round($ratio, 2);
+			return ($actual_ratio === $desired_ratio);
+		}
+		return false;
 	}
 }
 

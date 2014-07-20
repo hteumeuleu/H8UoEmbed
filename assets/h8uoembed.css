@@ -1,4 +1,5 @@
 .H8UoEmbed {
+	position:relative;
 	overflow:hidden;
 	background:#000;
 }
@@ -15,13 +16,42 @@
 	font:13px/1 Arial, sans-serif;
 }
 
-	.H8UoEmbed-link img {
+	.H8UoEmbed-img {
 		display:block;
 		width:100%;
 		height:auto;
 		margin:0;
 	}
 
+	/* Ratio magic */
+	.H8UoEmbed--ratio-16-9:before{
+		content:'';
+		display:block;
+		padding-top:56.25%;
+	}
+
+	.H8UoEmbed--ratio-16-9 .H8UoEmbed-link
+	{
+		position:absolute;
+		display:block;
+		overflow:hidden;
+		top:0;
+		left:0;
+		bottom:0;
+		right:0;
+	}
+
+	.H8UoEmbed--ratio-16-9 .H8UoEmbed-img--ratio-4-3
+	{
+		position:absolute;
+		left:0; 
+		right:0;
+		width:100%;
+		top:-16.6666666%;
+		height:auto;
+	}
+
+	/* Video title */
 	.H8UoEmbed-link:before {
 		content:attr(title);
 		z-index:1;
@@ -39,6 +69,7 @@
 		transition:all ease-in-out 0.3s;
 	}
 
+	/* Video play icon */
 	.H8UoEmbed-link:after {
 		content:'\25BA';
 		z-index:1;

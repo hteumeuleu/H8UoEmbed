@@ -1,164 +1,150 @@
 .H8UoEmbed {
-    overflow:hidden;
-    background:#000;
+	overflow:hidden;
+	background:#000;
 }
 
 .H8UoEmbed iframe,
 .H8UoEmbed object,
 .H8UoEmbed video {
-    display:block;
+	display:block;
 }
 
 .H8UoEmbed-link {
-    display:block;
-    position:relative;
+	display:block;
+	position:relative;
+	font:13px/1 Arial, sans-serif;
 }
 
 	.H8UoEmbed-link img {
-	    display:block;
-	    width:100%;
-	    height:auto;
-	    margin:0;
+		display:block;
+		width:100%;
+		height:auto;
+		margin:0;
 	}
 
 	.H8UoEmbed-link:before {
-	    content:attr(title);
-	    z-index:1;
-	    position:absolute;
-	    top:0;
-	    right:0;
-	    left:0;
-	    padding:8px 15px;
-	    overflow:hidden;
-	    text-overflow:ellipsis;
-	    font:13px/1 Arial,sans-serif;
-	    white-space:nowrap;
-	    color:#fff;
-	    background:#000;
-	    background:rgba(0,0,0,0.8);
-	    transition:all ease-in-out 0.3s;
+		content:attr(title);
+		z-index:1;
+		position:absolute;
+		top:0;
+		right:0;
+		left:0;
+		padding:8px 15px;
+		overflow:hidden;
+		color:#fff;
+		text-overflow:ellipsis;
+		white-space:nowrap;
+		background:#000;
+		background:rgba(0,0,0,0.8);
+		transition:all ease-in-out 0.3s;
 	}
 
 	.H8UoEmbed-link:after {
-	    content:'\25BA';
-	    z-index:1;
-	    position:absolute;
-	    top:50%;
-	    left:50%;
-	    width:60px;
-	    height:60px;
-	    margin:-35px 0 0 -35px;
-	    border:5px solid #fff;
-	    border-radius:35px;
-	    text-align:center;
-	    text-indent:5px;
-	    font:30px/60px Arial,sans-serif;
-	    color:#fff;
-	    transition:all ease-in-out 0.3s;
+		content:'\25BA';
+		z-index:1;
+		position:absolute;
+		top:50%;
+		left:50%;
+		width:60px;
+		height:60px;
+		margin:-35px 0 0 -35px;
+		border-width:5px;
+		border-style:solid;
+		border-radius:35px;
+		color:#fff;
+		text-align:center;
+		text-indent:5px;
+		font-size:30px;
+		line-height:2;
+		-webkit-filter:drop-shadow(0 0 5px rgba(0,0,0,0.5));
+		filter:drop-shadow(0 0 5px rgba(0,0,0,0.5));
+		transition:all ease-in-out 0.3s;
 	}
 
 /* Youtube */
-.H8UoEmbed-link[href*="youtube.com"]:before,
-.H8UoEmbed-link[href*="youtu.be"]:before {
-    top:0;
-    right:0;
-    left:0;
-    padding:8px 15px;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    font:13px/1 Arial,sans-serif;
-    white-space:nowrap;
-    color:#fff;
-    background:#000;
-    background:rgba(0,0,0,0.8);
-}
-
 .H8UoEmbed-link[href*="youtube.com"]:after,
 .H8UoEmbed-link[href*="youtu.be"]:after {
-    content:'\25BA';
-    position:absolute;
-    top:50%;
-    left:50%;
-    width:84px;
-    height:60px;
-    margin:-30px 0 0 -42px;
-    border:none;
-    border-radius:10px / 30px;
-    text-align:center;
-    text-indent:0;
-    font:25px/60px Arial,sans-serif;
-    color:#fff;
-    background:#000;
-    background:rgba(0,0,0,0.8);
+	content:'\25BA';
+	width:84px;
+	margin:-30px 0 0 -42px;
+	border:none;
+	border-radius:10px / 30px;
+	text-indent:0;
+	font-size:25px;
+	line-height:2.4;
+	color:#fff;
+	background:#000;
+	background:rgba(0,0,0,0.8);
 }
 
 .H8UoEmbed-link[href*="youtube.com"]:hover:after,
 .H8UoEmbed-link[href*="youtu.be"]:hover:after {
-    background-color:#cc181e;
+	background-color:#cc181e;
 }
 
 /* Vimeo */
 .H8UoEmbed-link[href*="vimeo.com"]:before {
-    top:10px;
-    right:auto;
-    left:10px;
-    padding:6px 4px;
-    max-width:calc(100% - 20px);
-    font-size:20px;
-    font-weight:bold;
-    color:#00adef;
-    background:rgba(23,35,35,0.8);
+	top:10px;
+	right:auto;
+	left:10px;
+	padding:6px 4px;
+	max-width:calc(100% - 20px);
+	font-size:20px;
+	font-weight:bold;
+	color:#00adef;
+	background:rgba(23,35,35,0.8);
 }
 
 .H8UoEmbed-link[href*="vimeo.com"]:after {
-    width:65px;
-    height:40px;
-    margin:-20px 0 0 -32px;
-    border:none;
-    border-radius:5px;
-    text-indent:0;
-    font-size:20px;
-    line-height:40px;
-    background:rgba(23,35,35,0.8);
+	width:65px;
+	height:40px;
+	margin:-20px 0 0 -32px;
+	border:none;
+	border-radius:5px;
+	text-indent:0;
+	font-size:20px;
+	line-height:40px;
+	background:rgba(23,35,35,0.8);
 }
 
 .H8UoEmbed-link[href*="vimeo.com"]:hover:after {
-    background-color:#00adef;
+	background-color:#00adef;
 }
 
 /* Dailymotion */
-
 .H8UoEmbed-link[href*="dailymotion.com"]:before {
-    top:auto;
-    bottom:0;
-    padding:4px 20px 4px 80px;
-    min-height:60px;
-    border-top:1px solid rgba(0,0,0,0.3);
-    font:bold 18px/1.25 Arial,sans-serif;
-    background:rgba(0,0,0,0.2);
+	top:auto;
+	bottom:0;
+	padding:4px 20px 4px 80px;
+	min-height:60px;
+	border-top:1px solid rgba(0,0,0,0.3);
+	font-size:18px;
+	font-weight:bold;
+	line-height:1.25;
+	background:rgba(0,0,0,0.2);
 }
 
 .H8UoEmbed-link[href*="dailymotion.com"]:after {
-    top:auto;
-    bottom:4px;
-    left:4px;
-    width:70px;
-    height:60px;
-    margin:0;
-    border:1px solid #000;
-    border-radius:4px;
-    text-indent:0;
-    font-size:25px;
-    line-height:60px;
-    background:#171d1b;
+	top:auto;
+	bottom:4px;
+	left:4px;
+	width:70px;
+	margin:0;
+	border-width:1px;
+	border-color:#000;
+	border-radius:4px;
+	text-indent:0;
+	font-size:25px;
+	line-height:2.4;
+	background:#171d1b;
 }
 
 .H8UoEmbed-link[href*="dailymotion.com"]:hover:before {
-    border-top-color:#000;
-    color:#ffcc33;
-    background:rgba(0,0,0,0.8);
+	border-top-color:#000;
+	color:#ffcc33;
+	background:rgba(0,0,0,0.8);
 }
 
 .H8UoEmbed-link[href*="dailymotion.com"]:hover:after {
-    color:#ffcc33;
+	color:#ffcc33;
 }

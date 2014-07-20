@@ -2,7 +2,7 @@
 /*
 Plugin Name: H8UoEmbed
 Plugin URI: http://github.com/HTeuMeuLeu/H8UoEmbed
-Version: 0.3
+Version: 0.4
 Description: Overrides WordPress default oEmbed settings to optimize performance.
 Author: HTeuMeuLeu
 Author URI: http://www.hteumeuleu.fr

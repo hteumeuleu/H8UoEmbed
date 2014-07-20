@@ -18,12 +18,14 @@ For example, for [this Youtube video](http://www.youtube.com/watch?v=V0FCNc5aou8
 This plugin will create and embed the following code :
 
 ```html
-<div style="max-width:660px; max-height:371px;" class="H8UoEmbed">
-	<a data-h8uoembed-html="&lt;iframe width=&quot;660&quot; height=&quot;371&quot; src=&quot;http://www.youtube.com/embed/V0FCNc5aou8?feature=oembed&amp;autoplay=1&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;" title="Mickey Mouse : Pique-Nique à la Plage - Episode intégral - Exclusivité Disney !" href="http://www.youtube.com/watch?v=V0FCNc5aou8&amp;rel=0" class="H8UoEmbed-link">
-		<img width="480" height="360" alt="Mickey Mouse : Pique-Nique à la Plage - Episode intégral - Exclusivité Disney !" src="http://i1.ytimg.com/vi/V0FCNc5aou8/hqdefault.jpg">
+<p style="max-width:660px;" class="H8UoEmbed">
+	<a data-h8uoembed-html="…" title="…" href="http://www.youtube.com/watch?v=V0FCNc5aou8" class="H8UoEmbed-link">
+		<img width="480" height="360" alt="…" src="http://i1.ytimg.com/vi/V0FCNc5aou8/hqdefault.jpg"  class="H8UoEmbed-img" />
 	</a>
-</div>
+</p>
 ```
+
+The `data-h8uoembed-html` is filled with the HTML code of the full player provided via oEmbed. The `alt` and `title` attributes are filled with the title of the video provided via oEmbed.
 
 A script is then added with the `wp_enqueue_scripts` hook to replace the static link by its iframe. This script will use the `data-h8uoembed-html` attribute generated in the static HTML. 
 Styles are also added to mimic default players look and feel.

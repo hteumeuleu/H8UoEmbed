@@ -31,8 +31,9 @@ A script is then added with the `wp_enqueue_scripts` hook to replace the static 
 Styles are also added to mimic default players look and feel.
 
 ## Status
-* V0.3 : CSS and JS are now added on separate files.
-* V0.2 : Minor fixes.
+* v0.4 : Improved the alignment of thumbnails with a different ratio than the player. Also some CSS cleaning.
+* v0.3 : CSS and JS are now added on separate files.
+* v0.2 : Minor fixes.
 * v0.1 : First version. I wouldn't advise installing this straight away on your own server, as this is still a very early version. I'm looking for testers to find edge cases and give me feedbacks on my code.
 
 H8UoEmbed stands for *HTeuMeuLeu's oEmbed*. I know, *how creative !* But it was either that or *VideoKilledTheWebPerfStar*, or *EmbedWithMadonna*. So in the end, it's not that bad.
